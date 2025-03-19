@@ -1,8 +1,13 @@
-from .segmentations import display_segments_info, generate_scores, display_pie_chart, display_value_distribution
+from .segmentations import (
+    display_segments_info,
+    generate_scores,
+    display_pie_chart,
+    display_value_distribution,
+)
 
 __all__ = [
     "display_segments_info",
     "generate_scores",
     "display_pie_chart",
-    "display_value_distribution"
+    "display_value_distribution",
 ]

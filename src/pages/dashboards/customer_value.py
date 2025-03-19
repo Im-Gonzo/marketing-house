@@ -1,15 +1,11 @@
 import os
-import numpy as np
-import seaborn as sns
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-import plotly.graph_objects as go
 
 from pathlib import Path
 from lib.customer.cltv.btyd_model import BTYDModel
 from lib.customer.segmentation.rfm_model import RFMModel
-from lib.customer.segmentation.kmeans_model import KMeansModel
 
 
 def render():
@@ -130,11 +126,11 @@ def render():
 
             col1, col2, col3 = st.columns(3)
             with col1:
-                st.metric(f"CLTV Promedio", f"{btyd_data['cltv'].mean():.2f}")
+                st.metric("CLTV Promedio", f"{btyd_data['cltv'].mean():.2f}")
             with col2:
-                st.metric(f"CLTV Mediano", f"{btyd_data['cltv'].median():.2f}")
+                st.metric("CLTV Mediano", f"{btyd_data['cltv'].median():.2f}")
             with col3:
-                st.metric(f"CLTV Máximo", f"{btyd_data['cltv'].max():.2f}")
+                st.metric("CLTV Máximo", f"{btyd_data['cltv'].max():.2f}")
 
             clv_dist_fig = px.histogram(
                 btyd_data,
@@ -208,14 +204,17 @@ def render():
             )
 
     with tab3:
-        from .components import display_segments_info, generate_scores, display_pie_chart, display_value_distribution
+        from .components import (
+            display_segments_info,
+            generate_scores,
+            display_pie_chart,
+            display_value_distribution,
+        )
 
         display_segments_info(segments_path)
 
         df_rfm = generate_scores(btyd_data)
-        
+
         display_pie_chart(df_rfm)
 
         display_value_distribution(df_rfm)
-
-        
